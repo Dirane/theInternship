@@ -1,6 +1,6 @@
 @extends('layouts.no-header')
 @section('content')
-<form method="post" action="{{ route('store-media') }} " enctype="multipart/form-data">
+<form method="post" action="{{ route('store-media',['locale'=>$_locale]) }} " enctype="multipart/form-data">
 	 {!! csrf_field() !!}
 	<h2> @lang('sentence.apply_internship')</h2>
 				<input type="hidden" name="company_id" value="{{ $company_id }}" />

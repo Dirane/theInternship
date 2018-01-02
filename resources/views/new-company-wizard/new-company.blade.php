@@ -15,7 +15,7 @@
        
         </div>
         <div class="form-designed panel-body" id="estate-listing">
-            <form class="form-horizontal" id="add-listing-form" role="form" method="POST" action="#"  enctype="multipart/form-data">   
+            <form class="form-horizontal" id="add-listing-form" role="form" method="POST" action="{{route('company-new', ['slug'=>$_locale])}} "  enctype="multipart/form-data">   
                 {!! csrf_field() !!}
                 <div class="ex-tab col5" id="company-tabs">
                     <ul class="nav nav-pills">

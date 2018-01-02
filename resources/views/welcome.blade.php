@@ -86,8 +86,8 @@
                     @auth
                         <a href="{{ url('/home') }}">@lang('word.home')</a>
                     @else
-                        <a href="{{ route('login') }}">@lang('word.login')</a>
-                        <a href="{{ route('register') }}">@lang('word.register')</a>
+                        <a href="{{ route('login', ['locale'=>$_locale]) }}">@lang('word.login')</a>
+                        <a href="{{ route('register', ['locale'=>$_locale]) }}">@lang('word.register')</a>
                     @endauth
                 </div>
             @endif

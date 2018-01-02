@@ -14,23 +14,29 @@
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+Route::get('/change-local/{locale}', 'LanguageCtrl@changeLocale');
 
 Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider');
 Route::get('login/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
 
-Route::get('/', 'SearchController@layouts')->name('index');
+Route::get('/', 'SearchController@index')->name('index');
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group([
+		'prefix' => '{locale}'], function () {
 
-Route::get('/search', 'SearchController@search')->name('search');
-Route::get('/search/details/{company}', 'SearchController@searchDetails')->name('search-details');
+		Route::get('/home', 'HomeController@index')->name('home');
 
-Route::post('/country/states', 'LocationController@ajax_country_states');
-Route::post('/state/cities', 'LocationController@ajax_states_cities');
+		Route::get('/search', 'SearchController@search')->name('search');
+		Route::get('/search/details/{company}', 'SearchController@searchDetails')->name('search-details');
 
-Route::get('/company/new', 'CompanyController@index');
-Route::post('/company/new', 'CompanyController@new')->name('company-new');
+		Route::post('/country/states', 'LocationController@ajax_country_states')->name('ajax-country-state');
+		Route::post('/state/cities', 'LocationController@ajax_states_cities')->name('ajax-state-cities');
 
-Route::get('/media/new', 'CompanyController@media')->name('media');\
-Route::post('/media/store', 'CompanyController@storeMedia')->name('store-media');
+		Route::get('/company/new', 'CompanyController@index')->name('company-index');
+		Route::post('/company/new', 'CompanyController@new')->name('company-new');
+
+		Route::get('/media/new', 'CompanyController@media')->name('media');
+		Route::post('/media/store', 'CompanyController@storeMedia')->name('store-media');
+	});
+

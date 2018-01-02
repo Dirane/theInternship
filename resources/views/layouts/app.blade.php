@@ -48,8 +48,8 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @guest
-                            <li><a href="{{ route('login') }}">@lang('word.login')</a></li>
-                            <li><a href="{{ route('register') }}">@lang('word.register')</a></li>
+                            <li><a href="{{ route('login', ['locale'=>$_locale]) }}">@lang('word.login')</a></li>
+                            <li><a href="{{ route('register', ['locale'=>$_locale]) }}">@lang('word.register')</a></li>
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
@@ -58,13 +58,13 @@
 
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a href="{{ route('logout') }}"
+                                        <a href="{{ route('logout', ['locale'=>$_locale]) }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                             @lang('word.logout')
                                         </a>
 
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        <form id="logout-form" action="{{ route('logout', ['locale'=>$_locale]) }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                         </form>
                                     </li>
