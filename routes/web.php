@@ -22,6 +22,8 @@ Route::get('login/{provider}/callback', 'Auth\LoginController@handleProviderCall
 Route::get('/', 'SearchController@index')->name('index');
 Auth::routes();
 
+Route::post('/country/states', 'LocationController@ajax_country_states');
+Route::post('/state/cities', 'LocationController@ajax_states_cities');
 Route::group([
 		'prefix' => '{locale}'], function () {
 
@@ -30,8 +32,6 @@ Route::group([
 		Route::get('/search', 'SearchController@search')->name('search');
 		Route::get('/search/details/{company}', 'SearchController@searchDetails')->name('search-details');
 
-		Route::post('/country/states', 'LocationController@ajax_country_states')->name('ajax-country-state');
-		Route::post('/state/cities', 'LocationController@ajax_states_cities')->name('ajax-state-cities');
 
 		Route::get('/company/new', 'CompanyController@index')->name('company-index');
 		Route::post('/company/new', 'CompanyController@new')->name('company-new');
@@ -40,3 +40,15 @@ Route::group([
 		Route::post('/media/store', 'CompanyController@storeMedia')->name('store-media');
 	});
 
+//case where no parameter is on the url
+		Route::get('/home', 'HomeController@index_nol')->name('home');
+
+		Route::get('/search', 'SearchController@search_nol')->name('search');
+		Route::get('/search/details/{company}', 'SearchController@searchDetails_nol')->name('search-details');
+
+
+		Route::get('/company/new', 'CompanyController@index_nol')->name('company-index');
+		Route::post('/company/new', 'CompanyController@new_nol')->name('company-new');
+
+		Route::get('/media/new', 'CompanyController@media_nol')->name('media');
+		Route::post('/media/store', 'CompanyController@storeMedia_nol')->name('store-media');

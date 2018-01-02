@@ -100,7 +100,7 @@
                 	@lang('sentence.banner_text')
                 	<div class="divider"> </div>
                 	<br />
-                <form method="get" action="/search">
+                <form method="get" action="{{$_locale}}/search">
                 <div class="row">
                 	<div class="form-group {{ $errors->has('country') || $errors->has('city') || $errors->has('state') ? ' has-error' : '' }}">
                 		{!! csrf_field() !!}

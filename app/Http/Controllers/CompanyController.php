@@ -8,15 +8,45 @@ use App\Address;
 use App\Company;
 use App\Media;
 
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\View;
+
 class CompanyController extends Controller
 {
-    public function index(){
+    public $_locale;
+    public function __construct(Request $request) 
+    {
+        $this->_locale = Session::get('applocale');
+
+        if ($request->is('fr/*')) {
+            $this->_locale = 'fr';
+        }
+        else if ($request->is('en/*')) {
+            $this->_locale = 'en';
+        }
+        else{
+            $this->_locale = 'en';
+        }
+
+        View::share('_locale', $this->_locale); //make the $_locale variable available on all views
+    }
+    //nolanguage param present
+    public function index_nol()
+    {
+        return $this->index( 'en');
+    }
+    public function index($locale){
     	 return view('new-company-wizard.new-company');
     	 
     }
 
     //create a new company 
-    public function new(Request $request)
+     //no language param 
+    public function new_nol(Request $request)
+    {
+        return $this->new($request, 'en');
+    }
+    public function new(Request $request, $locale)
     {
 		$address = Address::create([
 		            'telephone'     => $request->telephone,
@@ -62,13 +92,22 @@ class CompanyController extends Controller
     }
 
     //renders the form to create an application to a company after login
-    public function media(Request $request)
+    public function media_nol(Request $request)
+    {
+        return $this->media($request, 'en');
+    }
+    public function media(Request $request, $locale='en')
     {
     	$application_type = null;
     	return view('mediaForm')->with('application_type', $application_type)->with('company_id', 1);
     }
+
     //save the media object for the form above to a particular company you are applying for
-    public function storeMedia(Request $request)
+    public function storeMedia_nol(Request $request)
+    {
+        return $this->storeMedia($request, 'en');
+    }
+    public function storeMedia(Request $request, $locale='en')
     {
     	Custom::uploadCV($request->cv, 'uploads/company/letters', null);
     	$media = new Media();

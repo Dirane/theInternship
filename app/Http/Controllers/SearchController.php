@@ -34,14 +34,22 @@ class SearchController extends Controller
         View::share('_locale', $this->_locale); //make the $_locale variable available on all views
     }
 
-
-	public function index(Request $request)
+    //nol means no language parameter present
+    public function index_nol(Request $request)
+    {
+    	return $this->index($request, 'en');
+    }
+	public function index(Request $request, $locale )
     {
         $countries = Country::get();
         return view('welcome')->with('countries', $countries);
     }
 
-	public function search(Request $request)
+    public function search_nol(Request $request)
+    {
+    	return $this->search($request, 'en');
+    }
+	public function search(Request $request, $locale)
 	{
 		$company = Company::get();
 		// $company = Company::where('country_id', $request->country)->where('state_id', $request->state);
@@ -53,7 +61,11 @@ class SearchController extends Controller
 		return $company;
 	}
 
-	public function searchDetails(Request $request, $company)
+	public function searchDetails_nol(Request $request, $company)
+	{
+		return $this->searchDetails($request, 'en', $company);
+	}
+	public function searchDetails(Request $request, $locale, $company)
 	{
 		$company = Company::find($company);
 		$address = $company->address()->first();

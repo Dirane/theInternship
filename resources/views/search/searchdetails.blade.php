@@ -18,7 +18,7 @@
 	        <hr>
       	</div>
 	
-			<center><h3 class="center"> @lang('words.company_details')</h3></center>
+			<center><h3 class="center"> @lang('sentence.company_details')</h3></center>
 			<p>{{ $company->description }}</p>
 			
 		</div>
