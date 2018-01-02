@@ -5,15 +5,15 @@
       <div class="modal-content">
         {{-- <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">Welcome</h4>
+          <h4 class="modal-title" id="myModalLabel">@lang('word.welcome')</h4>
         </div> --}}
         <div class="modal-body">
 
 
           <div class="ex-tab col2 form-designed" id="listing-tabs">
                     <ul class="nav nav-pills">
-                        <li class="active" id="pill-add-info"><a href="#login" data-toggle="tab">Log In</a></li> 
-                        <li id="pill-add-finance"><a href="#signup" data-toggle="tab">Sign Up</a></li>
+                        <li class="active" id="pill-add-info"><a href="#login" data-toggle="tab">@lang('word.login')</a></li> 
+                        <li id="pill-add-finance"><a href="#signup" data-toggle="tab">@lang('word.register')</a></li>
                     </ul>
                     <div class="tab-content clearfix">
                       <!-- Beginning of login  -->
@@ -35,26 +35,26 @@
                             </div>
                         </div>
                         {{-- SOCIAL LITE ENDS--}}
-                        <h4 class="or-item"><span>OR</span></h4>
-                        <div class="form-group{{ $errors->has('identity') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">E-Mail / Tel</label>
+                        <h4 class="or-item"><span>@lang('word.or')</span></h4>
+                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                            <label class="col-md-4 control-label">@lang('word.email_tel')</label>
 
                             <div class="col-md-6">
-                                <input autofocus type="text" class="form-control" name="identity" value="{{ old('identity') }}" placeholder="email or phone number">
+                                <input autofocus type="text" class="form-control" name="email" value="{{ old('email') }}" placeholder="@lang('sentence.email_phone')">
 
-                                @if ($errors->has('identity'))
+                                @if ($errors->has('email'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('identity') }}</strong>
+                                        <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">Password</label>
+                            <label class="col-md-4 control-label">@lang('word.password')</label>
 
                             <div class="col-md-6">
-                                <input type="password" class="form-control" name="password" placeholder="password">
+                                <input type="password" class="form-control" name="password" placeholder="@lang('word.password')">
 
                                 @if ($errors->has('password'))
                                     <span class="help-block">
@@ -68,7 +68,7 @@
                             <div class="col-md-6 col-md-offset-4">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="remember"> Remember Me
+                                        <input type="checkbox" name="remember"> @lang('sentence.remember_me')
                                     </label>
                                   @if ($errors->has('remember'))
                                     <span class="help-block">
@@ -82,9 +82,9 @@
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-btn fa-sign-in"></i>Login
+                                    <i class="fa fa-btn fa-sign-in"></i>@lang('word.login')
                                 </button>
-                                <a class="btn btn-link" href="{{ url('/password/reset') }}">Forgot Your Password?</a>
+                                <a class="btn btn-link" href="{{ url('/password/reset') }}">@lang('sentence.forgot_password')</a>
                             </div>
                         </div>
                     </form>
@@ -110,9 +110,9 @@
                               </div>
                           </div>
                           {{-- SOCIAL LITE ENDS--}}
-                          <h4 class="or-item"><span>OR</span></h4>
+                          <h4 class="or-item"><span>@lang('word.or')</span></h4>
                           <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                              <label class="col-md-4 control-label">Name *</label>
+                              <label class="col-md-4 control-label">@lang('word.name') *</label>
 
                               <div class="col-md-6">
                                   <input type="text" class="form-control" name="name" value="{{ old('name') }}">
@@ -126,7 +126,7 @@
                           </div>
 
                           <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                              <label class="col-md-4 control-label">E-Mail Address</label>
+                              <label class="col-md-4 control-label">@lang('word.email')</label>
 
                               <div class="col-md-6">
                                   <input type="email" id="signup_email" class="form-control" name="email" value="{{ old('email') }}">
@@ -140,7 +140,7 @@
                           </div>
 
                           <div class="form-group{{ $errors->has('phone_number') ? ' has-error' : '' }}">
-                              <label class="col-md-4 control-label">Phone Number (+237)</label>
+                              <label class="col-md-4 control-label">@lang('sentence.phone_number')</label>
 
                               <div class="col-md-6">
                                   <input type="text" min="9" max="9" id="signup_phone_number" class="form-control" name="phone_number" value="{{ old('phone_number') }}">
@@ -156,7 +156,7 @@
                           
 
                           <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                              <label class="col-md-4 control-label">Password *</label>
+                              <label class="col-md-4 control-label">@lang('word.password') *</label>
 
                               <div class="col-md-6">
                                   <input type="password" class="form-control" name="password">
@@ -170,7 +170,7 @@
                           </div>
 
                           <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                              <label class="col-md-4 control-label">Confirm Password *</label>
+                              <label class="col-md-4 control-label">@lang('sentence.confirm_password') *</label>
 
                               <div class="col-md-6">
                                   <input type="password" class="form-control" name="password_confirmation">
@@ -184,12 +184,12 @@
                           </div>
                           
                           <div class="form-group container-fluid" style="display: none;" id="error-div" align="center">
-                              <p class="alert alert-danger">Need to set either email or phone number or both</p>
+                              <p class="alert alert-danger">@lang('alert.need_email_phone')</p>
                           </div>
                           <div class="form-group">
                               <div class="col-md-6 col-md-offset-4">
                                   <button type="submit" id="register-btn" class="btn btn-block btn-primary">
-                                      <i class="fa fa-btn fa-user"></i>Register
+                                      <i class="fa fa-btn fa-user"></i>@lang('word.register')
                                   </button>
                               </div>
                           </div>
@@ -201,7 +201,7 @@
           
         </div>
         <div class="modal-footer">
-          {{-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> --}}
+          {{-- <button type="button" class="btn btn-default" data-dismiss="modal">@lang('word.close')</button> --}}
           <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
         </div>
       </div>

@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="{{ URL::to('bootstrap-select/css/bootstrap-select.css') }}">
     <link href="{{ URL::to('fa/css/font-awesome.min.css') }}" rel='stylesheet' type='text/css'>
 
+    @yield('styles')
 </head>
 <body>
     <div id="app">
@@ -33,7 +34,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                        {{ config('app.name', 'TheInternship') }}
                     </a>
                 </div>
 
@@ -47,8 +48,8 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @guest
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
+                            <li><a href="{{ route('login') }}">@lang('word.login')</a></li>
+                            <li><a href="{{ route('register') }}">@lang('word.register')</a></li>
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
@@ -60,7 +61,7 @@
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            Logout
+                                            @lang('word.logout')
                                         </a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -86,6 +87,7 @@
 
     <!-- bootstrap select -->
     <script src="{{ URL::to('bootstrap-select/js/bootstrap-select.js') }}"></script>
+    @yield('js')
 
 </body>
 </html>

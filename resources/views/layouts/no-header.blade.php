@@ -14,6 +14,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <!-- bootstrap select -->
     <link rel="stylesheet" href="{{ URL::to('bootstrap-select/css/bootstrap-select.css') }}">
+    @yield('styles')
 
 </head>
 <body>
@@ -26,7 +27,7 @@
     <script src="{{ asset('js/custom.js') }}"></script>
     <script src="{{ URL::to('tinymce/js/tinymce/tinymce.min.js') }}"></script>
 
-
+    @yield('js')
     <!-- bootstrap select -->
     <script src="{{ URL::to('bootstrap-select/js/bootstrap-select.js') }}"></script>
     <script type="text/javascript">

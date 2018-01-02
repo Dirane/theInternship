@@ -11,7 +11,7 @@
         </div>
         <div class="panel-heading top-btn container-fluid" style="text-align: center;">
             
-            <span id="pg_title">Create Company </span>
+            <span id="pg_title">@lang('sentence.create_company') </span>
        
         </div>
         <div class="form-designed panel-body" id="estate-listing">
@@ -20,14 +20,14 @@
                 <div class="ex-tab col5" id="company-tabs">
                     <ul class="nav nav-pills">
                         <li class="active" id="pill-add-company">
-                            <a><i class="fa fa-building text text-default"></i><span> Company Details</span></a>
+                            <a><i class="fa fa-building text text-default"></i><span> @lang('sentence.company_details')</span></a>
                         </li>
                         <li id="pill-add-info">
-                            <a><i class="fa fa-list text text-info"></i><span> Address/Category </span></a>
+                            <a><i class="fa fa-list text text-info"></i><span> @lang('word.address_cat')</span></a>
                         </li>
                         
                         <li id="pill-add-image">
-                            <a><i class="fa fa-image text text-warning"></i><span>Company Logo</span></a>
+                            <a><i class="fa fa-image text text-warning"></i><span>@lang('word.company_logo')</span></a>
                         </li>
                     </ul>
                     <div class="tab-content clearfix">

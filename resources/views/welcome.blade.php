@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>Laravel</title>
+        <title>{{ config('app.name', 'TheInternship') }}</title>
             <link href="{{ asset('css/app.css') }}" rel="stylesheet">
              <!-- bootstrap select -->
     <link rel="stylesheet" href="{{ URL::to('bootstrap-select/css/bootstrap-select.css') }}">
@@ -84,10 +84,10 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{ url('/home') }}">@lang('word.home')</a>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
+                        <a href="{{ route('login') }}">@lang('word.login')</a>
+                        <a href="{{ route('register') }}">@lang('word.register')</a>
                     @endauth
                 </div>
             @endif
@@ -97,7 +97,7 @@
                     TheInternship
                 </div>
 
-                	Build your skill with industrial standard by doing internships in 
+                	@lang('sentence.banner_text')
                 	<div class="divider"> </div>
                 	<br />
                 <form method="get" action="/search">
@@ -108,7 +108,7 @@
 	                    <div  class="col-md-2 col-sm-4">
 	                    
 	                    <input type="text" name="search" class="form-control" placeholder="company type or field of specialty">
-	                       <span > search keyword </span>
+	                       <span > @lang('sentence.search_keyword') </span>
                         </div>
 	                    
 	                    <div class="col-md-2 col-sm-4 {{ $errors->has('country') ? ' has-error' : '' }}">
@@ -119,7 +119,7 @@
                                 @endforeach
                             @endif
                         </select>
-                        <center>Country <a style="display: inline-block;" href="#" class="cant-find" data-missing="country" >{{-- Can't find my country --}}</a></center>
+                        <center>@lang('word.country') <a style="display: inline-block;" href="#" class="cant-find" data-missing="country" >{{-- @lang('sentence.cant_find',['name'=> 'Country']) --}}</a></center>
 
                         @if ($errors->has('country'))
                             <span class="help-block">
@@ -131,7 +131,7 @@
                     <div class="col-md-2 col-sm-5 {{ $errors->has('state') ? ' has-error' : '' }}">
                         <select class="col-md-12 form-control selectpicker" data-live-search="true" title="Select State" id="state"  name="state">
                         </select>
-                        <center>State <a style="display: inline-block;" href="#" class="cant-find" data-missing="state" >{{-- Can't find my state --}}</a></center>
+                        <center>@lang('word.state') <a style="display: inline-block;" href="#" class="cant-find" data-missing="state" >{{-- @lang('sentence.cant_find',['name'=> 'state']) --}}</a></center>
 
                         @if ($errors->has('state'))
                             <span class="help-block">
@@ -143,7 +143,7 @@
                         <div class="col-md-2 col-sm-4 col-md-offset-0 col-sm-offset-2 {{ $errors->has('city') ? ' has-error' : '' }}">
                             <select class="col-md-12 form-control selectpicker" data-live-search="true" title="Select City" id="city"  name="city">
                             </select>
-                            <center>Town / City <a style="display: inline-block;" href="#" class="cant-find" data-missing="city" >{{-- Can't find my town --}}</a> </center>
+                            <center>@lang('word.city_town') <a style="display: inline-block;" href="#" class="cant-find" data-missing="city" >{{-- Can't find my town --}}</a> </center>
                             @if ($errors->has('city'))
                                 <span class="help-block">
                                     <strong>{{ $errors->first('city') }}</strong>
@@ -152,7 +152,7 @@
                         </div>
 	                    <div class="col-xs-12 col-sm-6 col-md-3">
 	                    	<span class="links"> &nbsp</span>
-	                    <button type="submit" class="btn btn-lg btn-primary">search</button>
+	                    <button type="submit" class="btn btn-lg btn-primary">@lang('word.search')</button>
 	                    </div>
                 	</div> 
                 </div>
