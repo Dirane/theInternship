@@ -12,7 +12,7 @@
 				<h3> {{ $company->name }}</h3>
 
 				<p>{{ substr($company->description, 0, 300) }} 
-					<a href="{{ route('search-details', ['company' => $company->id, 'locale' => $_locale ]) }} "> @lang('sentence.view_more')</a>
+					<a href="{{ route('search-details', ['company' => $company->id, 'locale' => $_locale ]) }} "> @lang('sentence.view_more') »</a>
 				</p>
 			@endforeach
 		</div>

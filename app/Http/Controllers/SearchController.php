@@ -39,7 +39,7 @@ class SearchController extends Controller
     {
     	return $this->index($request, 'en');
     }
-	public function index(Request $request, $locale )
+	public function index(Request $request )
     {
         $countries = Country::get();
         return view('welcome')->with('countries', $countries);
