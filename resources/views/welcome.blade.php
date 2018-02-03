@@ -334,7 +334,7 @@
                 </div>
 
                 <div class="button-get-started">
-                    <a href="#gaia" class="btn btn-danger btn-fill btn-lg">Contact Us</a>
+                    <a href="{{route('contact-us')}}" class="btn btn-danger btn-fill btn-lg">Contact Us</a>
                 </div>
             </div>
         </div>
@@ -349,7 +349,7 @@
                                 Southwest, Cameroon
                             </p>
                             <h4>Want to say hello?</h4>
-                            <a target="_blank" href="http://www.creative-tim.com/contact-us"  class="btn btn-black btn-contact">
+                            <a target="_blank" href="{{route('contact-us')}}"  class="btn btn-black btn-contact">
                                 CONTACT US <i class="fa fa-paper-plane"></i>
                             </a>
                             <h4>Thank you for informing y!</h4>
@@ -405,7 +405,7 @@
                          <nav>
                             <ul>
                                 <li>
-                                    <a href="#">Contact Us</a>
+                                    <a href="{{route('contact-us')}}">Contact Us</a>
                                 </li>
                                 <li>
                                     <a href="#">How it works</a>
