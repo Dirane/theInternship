@@ -16,7 +16,7 @@ class CreateCompaniesTable extends Migration
         Schema::create('companies', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('category_id')->unsigned();
-            $table->integer('address_id')->unsigned();
+            // $table->integer('address_id')->unsigned();
             $table->string('name');//done
             $table->enum('internship_reward',['paid','not paid','allowance']);
             $table->string('logo');
@@ -24,7 +24,9 @@ class CreateCompaniesTable extends Migration
             $table->string('website');//done
             $table->integer('duration');//done
             $table->string('application_period'); //done
+            $table->string('application_end_period');
             $table->string('intern_number');//done
+            // $table->string('image'); deprecated in place of images table
             $table->double('longitude')->nullable();
             $table->double('latitude')->nullable();
             $table->timestamps();

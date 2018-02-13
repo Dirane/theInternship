@@ -8,12 +8,15 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     
-    <title>{{ config('app.name', 'TheInternship') }}</title>
+    <title>{{ config('app.name', 'Internship Space') }}</title>
 
     <!-- Styles -->
+
+    @yield('styles')
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <!-- bootstrap select -->
     <link rel="stylesheet" href="{{ URL::to('bootstrap-select/css/bootstrap-select.css') }}">
+    <link href="{{ URL::to('fa/css/font-awesome.min.css') }}" rel='stylesheet' type='text/css'>
 
 </head>
 <body>
@@ -22,27 +25,19 @@
             <div class="container">
                 <div class="navbar-header">
 
-                    <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse" aria-expanded="false">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                        {{ config('app.name', 'Internship Space') }}
                     </a>
                 </div>
-
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
+                <!-- Left Side Of Navbar -->
+                <!-- <ul class="nav navbar-nav">
+                    <li><a href="{{ url('/home') }}">Home</a></li>
+                </ul>
+ -->
+                <!-- Right Side Of Navbar -->
+                <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @guest
@@ -70,14 +65,21 @@
                             </li>
                         @endguest
                     </ul>
-                </div>
+            </div>
+              
+                
             </div>
         </nav>
 
         @yield('content')
     </div>
 
+   
+
+     @include('modals')
+ @yield('footer')
     <!-- Scripts -->
+    <script src="{{ URL::to('jquery/jquery2.1.4.min.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
 

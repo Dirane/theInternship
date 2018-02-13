@@ -15,21 +15,22 @@
        
         </div>
         <div class="form-designed panel-body" id="estate-listing">
-            <form class="form-horizontal" id="add-listing-form" role="form" method="POST" action="#"  enctype="multipart/form-data">   
+            <form class="form-horizontal" id="add-listing-form" role="form" method="POST" action="{{route('company-new') }}"  enctype="multipart/form-data">   
                 {!! csrf_field() !!}
-                <div class="ex-tab col5" id="company-tabs">
-                    <ul class="nav nav-pills">
+                <div class="ex-tab col5 " id="company-tabs">
+                    <ul class="nav nav-pills col-md-offset-3 col-sm-offset-2">
                         <li class="active" id="pill-add-company">
-                            <a><i class="fa fa-building text text-default"></i><span> Company Details</span></a>
+                            <a href="#add-company" data-toggle="tab"><i class="fa fa-building text text-default"></i><span> Company Details</span></a>
                         </li>
                         <li id="pill-add-info">
-                            <a><i class="fa fa-list text text-info"></i><span> Address/Category </span></a>
+                            <a href="#add-address" data-toggle="tab"><i class="fa fa-list text text-info"></i><span> Address/Category </span></a>
                         </li>
                         
                         <li id="pill-add-image">
-                            <a><i class="fa fa-image text text-warning"></i><span>Company Logo</span></a>
+                            <a href="#add-logo" data-toggle="tab"><i class="fa fa-image text text-warning"></i><span>Company Logo</span></a>
                         </li>
                     </ul>
+                    <br> <hr>
                     <div class="tab-content clearfix">
                         <div class="tab-pane active" id="add-company">
                             @include('new-company-wizard.w-company')
@@ -53,9 +54,6 @@
 @section('extra_js')
 <script type="text/javascript">
     $(document).ready(function(e){
-
-
-
 
         {{-- If the user is not logged in, each time he/she clicks or there is a blur on an element, force open the login/signup modal
         @if(Auth::guest())
@@ -130,218 +128,7 @@
                         </div>`); 
             var add_div = $('.listing-images .them').append(data); 
         })
-
-
-
-
-
-        /*------------------------------------------------------------*/
-        /*            SUBMITTING/CREATING A NEW LISTING               */
-        /*------------------------------------------------------------*/
-        $('#add-listing-form').submit(function(e){
-            e.preventDefault(); 
-            var frm = $('#add-listing-form');
-            var ajax_processing = $('#processing-during-ajax');
-            var btn = $(this).find('.submit-listing-btn');
-            var modal_popup = $('.modal-popup');
-            var formData = new FormData(this);
-
-            // console.log({serialize: frm.serialize(), formData: formData})
-
-            $.ajax({
-                type:       frm.attr('method'), 
-                url:        frm.attr('action') , 
-                data:       formData, 
-                type:       'POST', 
-                // async:      false, 
-                cache:      false,
-                contentType: false,
-                processData: false,
-
-                beforeSend: function() {
-                    btn.html('<i class="fa fa-spinner"> </i> Creating listing. Patient please!!!').prop('disabled', true); 
-                    ajax_processing.removeClass('hidden');
-                    $('html, body').animate({
-                        scrollTop: $("#processing-during-ajax").offset().top
-                    }, 1000);
-                },
-                success:    function(data){
-                    btn.html('<i class="fa fa-plane"> </i> Submit ').prop('disabled', false)
-
-                    if (data.success == true) {
-
-                        modal_popup.find('#modal-title').html(`Process succesfull`); 
-                        modal_popup.find('.modal-body').addClass('text-success').removeClass('text-danger');
-                        modal_popup.find('#modal-font').html(`<i class="fa fa-check-circle-o fa-5x"></i>`); 
-                        modal_popup.find('#modal-message').html(data.message + '<br> You should be redirected to listings page in less than 5 seconds');
-                        modal_popup.find('.rd_more').html('My Listings').attr('href', data.redirect);
-                       
-                        ajax_processing.addClass('hidden');
-                        modal_popup.modal();
-
-                        setTimeout(function() {
-                            window.location.href = data.redirect
-                            return true; 
-                        }, 4000);
-
-                    }else{
-
-                        modal_popup.find('#modal-title').html(`Oops!!!`); 
-                        modal_popup.find('.modal-body').removeClass('text-success').addClass('text-danger');
-                        modal_popup.find('#modal-font').html(`<i class="fa fa-frowm-o fa-5x"></i>`); 
-                        modal_popup.find('#modal-message').html('Oops, something unexpected happened. Please, ensure you donnot upload too many files at once. Try uploading minimal number of files for optimal performance');
-                        modal_popup.find('.rd_more').html('').attr('href', '#');
-
-                        ajax_processing.addClass('hidden');
-                        modal_popup.modal();
-
-                        return false; 
-                    }
-                }, 
-                error:      function(data){
-                    btn.html('<i class="fa fa-plane"> </i> Submit ').prop('disabled', false)
-                    modal_popup.find('#modal-title').html(`Oops!!!`); 
-                    modal_popup.find('.modal-body').removeClass('text-success').addClass('text-danger');
-                    modal_popup.find('#modal-font').html(`<i class="fa fa-frowm-o fa-5x"></i>`); 
-                    modal_popup.find('#modal-message').html('Oops, something unexpected happened. Please, ensure you donnot upload too many files at once. Try uploading minimal number of files for optimal performance');
-                    modal_popup.find('.rd_more').html('').attr('href', '#');
-                    
-                    ajax_processing.addClass('hidden');
-                    modal_popup.modal(); 
-                }
-            })
-            e.preventDefault();
-        })
-
-        var INPUT = {
-            /*STEP 1*/
-            name:            $('#name'), 
-            website:              $('#website'), 
-            duration:               $('#duration'), 
-            application_period:            $('#application_period'), 
-            intern_number:      $('#intern_number'), 
-            description:  $('#description'), 
-            
-
-
-            /*STEP 2*/
-            house_type_id:      $('#house_type_id'), 
-            units:              $('#units'), 
-            bedroom:            $('#bedroom'), 
-            bath:               $('#bath'), 
-            palor:              $('#palor'), 
-            kitchen:            $('#kitchen'), 
-            area:               $('#area'), 
-            length:             $('#length'), 
-            width:              $('#width'), 
-            headline:           $('#headline'), 
-            description:        $('#description'), 
-
-
-            /*STEP 3*/
-            price:              $('#price'), 
-            billing_cycle_id:   $('#billing_cycle_id'), 
-            caution:            $('#caution'), 
-            initial_deposit:    $('#initial_deposit')
-        }
-
-
-        /*-----------------------------------------------------------------------*/
-        /*                  WORD COUNT FOR HEADLINE AND DESCRIPTION              */
-        /*-----------------------------------------------------------------------*/
-        $('.word-count').on('click blur keyup keypress change', function(e){
-
-            var that = $(this); 
-
-            var min = that.data('wc-min')
-            var max = that.data('wc-max')
-            var id   = that.data('wc-id')
-            var len  = that.val().length
-
-            $('#'+id).html(len);
-
-            isEltValid(that, {min: min, max: max});
-        });
-        
-
-
-
-        /*-----------------------------------------------------------------------*/
-        /*          INNER NAVIGATION, NEXT-PREVIOUS PAGE AND VALIDATION          */
-        /*-----------------------------------------------------------------------*/
-        var isValid;
-        function isEltValid(elt, sizeObj = null) {
-            var type = elt.get(0).tagName.toLowerCase();
-            var val = elt.val(); 
-            var len = val.length
-            if (val == null || val == '') {
-                isValid = true;  
-                if (type == 'input') {
-                    elt.parent('div').children('button').addClass('is-not-valid');
-                }else if ( $.inArray(type, ['input', 'textarea']) !== -1 ){
-                    elt.addClass('is-not-valid')
-                }
-            }else{
-                if (elt.is('input')) {
-                    elt.parent('div').children('button').removeClass('is-not-valid');
-                }else if ( $.inArray(type, ['input', 'textarea']) !== -1 ){
-                    elt.removeClass('is-not-valid')
-                }
-            }
-
-            if (sizeObj) {
-                if (len < sizeObj.min || len > sizeObj.max) {
-                    isValid = true;  
-                    if (type == 'input') {
-                        elt.parent('div').children('button').addClass('is-not-valid');
-                    }else if ( $.inArray(type, ['input', 'textarea']) !== -1 ){
-                        elt.addClass('is-not-valid')
-                    }
-                }
-            }
-
-        }
-        $('.nav-btn-next-prev').click(function(e){
-            var nav_pills = $('#company-tabs').children('.nav-pills').children('li'); 
-            var nav_tabs = $('#company-tabs').children('.tab-content').children('.tab-pane'); 
-
-            var next_prev = $(this).data('next-prev'); 
-
-            var move = $(this).data('move'); 
-            var current = $(this).data('current');
-            isValid = true; 
-
-
-            if (move == 'next') {
-
-                if (current == 'company') {
-
-                    isEltValid(INPUT.name);
-                    isEltValid(INPUT.description);
-                    isEltValid(INPUT.website);
-                    isEltValid(INPUT.duration);
-
-                }else if (current == 'address') {
-
-                }else if (current == 'logo') {
-
-                }
-            }
-
-            if (!isValid) {
-                toastr["error"]("Please, correct the errors on the form before going to next state")
-                return false; 
-            }
-
-            nav_pills.removeClass('active'); 
-            nav_tabs.removeClass('active'); 
-
-            $('#pill-add-'+next_prev).addClass('active');
-            $('#add-'+next_prev).addClass('active');
-            $('html, body').animate(
-              { scrollTop: $('#company-tabs').offset().top-60 }, 'slow'
-            )
-        })
+             
         
     })
 </script>
