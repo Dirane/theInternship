@@ -34,7 +34,7 @@
         <div class="aa-contact-area">
           <div class="aa-contact-top">
             <div class="aa-contact-top-left col-sm-12 col-md-6 col-p-0">
-              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63669.71185723766!2d9.22203451544063!3d4.150012885292529!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x10613259651819a3%3A0x754210aa92e62bff!2sBuea!5e0!3m2!1sen!2scm!4v1500462515955" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+              <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1288.7371102510774!2d9.284932130196681!3d4.15279285037883!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1061318c199e518d%3A0x3b53fb7f6d5eb7d6!2sA1+Complex!5e0!3m2!1sen!2scm!4v1524154348199" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
             </div>
             <div class="aa-contact-top-right col-sm-12 col-md-6">
               <h2>Contact</h2>
