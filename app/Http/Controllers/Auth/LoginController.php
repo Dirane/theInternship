@@ -38,7 +38,7 @@ class LoginController extends Controller
      */
     public function __construct(Request $request)
     {
-        if (str_contains(url()->previous(), '/search/details/*')) {
+        if (url()->previous()) {
             $this->request = $request; 
             session(['url.intended' => url()->previous()]);
             $this->redirectTo = session()->get('url.intended');
@@ -68,7 +68,7 @@ class LoginController extends Controller
             $request->session()->flash('alert-danger', 'Authentication cancalled. Please, try to login again');
             return redirect('login');
         }
-        
+
         if ($provider == "twitter"){
 
             $user = Socialite::driver($provider)->user();

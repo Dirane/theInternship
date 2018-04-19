@@ -12,6 +12,6 @@ class Category extends Model
 	// }
 	public function company()
 	{
-		return $this->hasOne(App\Company::class, 'category_id');
+		return $this->hasMany(\App\Company::class, 'category_id');
 	}
 }

@@ -22,18 +22,23 @@ use Illuminate\Support\Facades\Mail;
 use Mapper;
 class CompanyController extends Controller
 {
-
+     public $roles; 
+     
     //protected all functions of this controller with the auth middleware
     // id all users acessing methods of this class should be loggedin
     public function __construct(Request $request)
     {
         $this->middleware('auth');
+        $this->roles = Custom::getUserRoles(Auth::user());
+        view()->share('__roles__', $this->roles);
     }
 
 
-
-
     public function index(){
+            //only admins are allowed to create companies
+          if (!in_array('admin', Custom::getUserRoles(Auth::user()))) {
+            throw new \Illuminate\Auth\Access\AuthorizationException; 
+        }
 Mapper::map(53.381128999999990000, -1.470085000000040000, ['draggable' => true, 'eventDragEnd' => 'document.getElementById("latitude").value = event.latLng.lat(); document.getElementById("longitude").value =event.latLng.lng();']);
     	$countries = Country::get();
         $categories = Category::get();
@@ -41,6 +46,8 @@ Mapper::map(53.381128999999990000, -1.470085000000040000, ['draggable' => true, 
                                                         ->with('categories', $categories);
     	 
     }
+
+   
 
     //create a new company 
     public function new(Request $request)
@@ -158,9 +165,19 @@ $data = DB::transaction(function () use ($request, $logo){
     //save the media object for the form above to a particular company you are applying for
     public function storeMedia(Request $request)
     {
+
+
+        $this->validate($request,[
+            'application_letter' => 'required',
+            'cv'                =>  'required',
+            'company_id'        =>  'required|integer',
+            // 'multivation_letter'=>  'required',
+            'application_type'  =>  'required',
+        ]);
+
     	$media = new Media();
     	$media->company_id = $request->company_id;
-    	$media->application_type = 1;
+    	$media->application_type = $request->application_type;
     	$media->user_id = Auth::user()->id;
 
     	$media->multivation_letter = $request->multivation_letter;
@@ -177,6 +194,7 @@ $data = DB::transaction(function () use ($request, $logo){
         /*Send Email*/ 
         $company = Company::find($request->company_id)->first();
         $mailContent = [   'title' => 'Contact Us', 
+                            'subject'=>'Application For Internship',
                             'body' =>   '<strong>' . Auth::user()->name . '</strong><br />' .
                                          'Wants to submit an application to the company<br />' .
                                         $company->name . '<br />' .

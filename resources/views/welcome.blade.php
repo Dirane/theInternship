@@ -11,7 +11,10 @@
     {!! SEOMeta::generate() !!}
     <!-- generate the opengraph tags -->
     {!! OpenGraph::generate() !!}
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">                 <!-- bootstrap select -->
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet"> 
+            <link href="{{ asset('fa/css/font-awesome.css') }}" rel="stylesheet">
+   
+                     <!-- bootstrap select -->
     <link href="{{ asset('assets/css/gaia.css') }}" rel="stylesheet"/>
         <link rel="stylesheet" href="{{ URL::to('bootstrap-select/css/bootstrap-select.css') }}">
 
@@ -47,18 +50,19 @@
                         <a href="{{route('contact-us')}} " target="_blank">Contact Us</a>
                     </li>
                     <li class="dropdown">
-                        <a href="#gaia" class="dropdown-toggle" data-toggle="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-share-alt"></i> Share
                         </a>
                         <ul class="dropdown-menu dropdown-danger">
                             <li>
-                                <a href="#"><i class="fa fa-facebook-square"></i> Facebook</a>
+                                <a onclick="window.open(
+                    'https://www.facebook.com/sharer/sharer.php?u={{ urlencode(route('index')) }}', 'newwindow', 'width=600,height=400'); return false;" href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(route('index')) }}"><i class="fa fa-facebook-square"></i> Facebook</a>
                             </li>
                             <li>
-                                <a href="#"><i class="fa fa-twitter"></i> Twitter</a>
+                                <a onclick="window.open('https://twitter.com/intent/tweet?url={{ urlencode(route('index')) }}&text=Heyy, checkout+this+site&hashtags=InternshipSpace,do+your+internship&via=internshipspace', 'newwindow', 'width=600,height=400'); return false;"  href="https://twitter.com/intent/tweet?url={{ urlencode(route('index')) }}&text=Heyy, checkout+this+site&hashtags=InternshipSpace,do+your+internship&via=internshipspace" target="_blank"><i class="fa fa-twitter"></i> Twitter</a>
                             </li>
                             <li>
-                                <a href="#"><i class="fa fa-instagram"></i> Instagram</a>
+                                <a onclick="window.open('https://plus.google.com/share?url={{ urlencode(route('index')) }}', 'newwindow', 'width=600,height=400'); return false;" href="https://plus.google.com/share?url={{ urlencode(route('index')) }}" target="_blank"><i class="fa fa-google-plus"></i> Google Plus</a>
                             </li>
                         </ul>
                     </li>
@@ -100,7 +104,7 @@
                         </div>
                         
                         <div class="col-md-2 col-sm-6 {{ $errors->has('country') ? ' has-error' : '' }}">
-                                         <select   class="col-md-12 col-sm-12 form-control selectpicker" data-live-search="true" title="Select " tabindex="10"  name="country" id="country" value="{{ old('country') }}">
+                                         <select   class="col-md-12 col-sm-12 form-control selectpicker" data-live-search="true" title="Select Country" tabindex="10"  name="country" id="country" value="{{ old('country') }}">
                             @if ($countries->count())
                                 @foreach($countries as $country)
                                              <option value="{{$country->id}}" {{ old('country') == $country->id ? 'selected' : null }} > {{ $country->name}} </option>
@@ -167,7 +171,7 @@
                 <div class="col-md-4">
                     <div class="info-icon">
                         <div class="icon text-danger">
-                            <i class="pe-7s-graph1"></i>
+                            <i class="pe-7s-attention"></i>
                         </div>
                         <h3>Trust</h3>
                         <p class="description">We promise you a new look and more importantly, a new attitude. We build that by getting to know you, your needs and creating the best Solutions for those needs.</p>
@@ -237,7 +241,7 @@
                                                 <div class="description">
                                                     <h3 class="title">Harisu</h3>
                                                     <p class="small-text">Co-Founder of Afayi</p>
-                                                    <p class="description">I am a software Engineer from the university of Buea, with experience in programming and web disign</p>
+                                                    <p class="description">I am a software Engineering student from the university of Buea, with experience in Algorithms, Software design, programming and web disign</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -334,7 +338,8 @@
                 </div>
 
                 <div class="button-get-started">
-                    <a href="{{route('contact-us')}}" class="btn btn-danger btn-fill btn-lg">Contact Us</a>
+
+                    <a href="{{ route('contact-us') }}" class="btn btn-danger btn-fill btn-lg">Contact Us</a>
                 </div>
             </div>
         </div>
@@ -349,10 +354,11 @@
                                 Southwest, Cameroon
                             </p>
                             <h4>Want to say hello?</h4>
-                            <a target="_blank" href="{{route('contact-us')}}"  class="btn btn-black btn-contact">
+
+                            <a target="_blank" href="/contact-us"  class="btn btn-black btn-contact">
                                 CONTACT US <i class="fa fa-paper-plane"></i>
                             </a>
-                            <h4>Thank you for informing y!</h4>
+                            <h4>Thank you for informing Others about us!</h4>
 
 
                             <div class="col-md-6">
@@ -372,114 +378,54 @@
                     </div>
                 </div>
 
-
-    <footer class="footer footer-big footer-color-black" data-color="black">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-2 col-sm-3">
-                    <div class="info">
-                        <h5 class="title">Company</h5>
-                        <nav>
-                            <ul>
-                                <li>
-                                    <a href="#">Home</a></li>
-                                <li>
-                                    <a href="#">Find offers</a>
-                                </li>
-                                <li>
-                                    <a href="#">Discover Projects</a>
-                                </li>
-                                <li>
-                                    <a href="#">Our Portfolio</a>
-                                </li>
-                                <li>
-                                    <a href="#">About Us</a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-                <div class="col-md-3 col-md-offset-1 col-sm-3">
-                    <div class="info">
-                        <h5 class="title"> Help and Support</h5>
-                         <nav>
-                            <ul>
-                                <li>
-                                    <a href="{{route('contact-us')}}">Contact Us</a>
-                                </li>
-                                <li>
-                                    <a href="#">How it works</a>
-                                </li>
-                                <li>
-                                    <a href="#">Terms &amp; Conditions</a>
-                                </li>
-                                <li>
-                                    <a href="#">Company Policy</a>
-                                </li>
-                                <li>
-                                    <a href="#">Money Back</a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-3">
-                    <div class="info">
-                        <h5 class="title">Latest News</h5>
-                        <nav>
-                            <ul>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-twitter"></i> <b>Get Shit Done</b> The best kit in the market is here, just give it a try and let us...
-                                        <hr class="hr-small">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-twitter"></i> We've just been featured on <b> Awwwards Website</b>! Thank you everybody for...
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-                <div class="col-md-2 col-md-offset-1 col-sm-3">
-                    <div class="info">
-                        <h5 class="title">Follow us on</h5>
-                        <nav>
-                            <ul>
-                                <li>
-                                    <a href="#" class="btn btn-social btn-facebook btn-simple">
-                                        <i class="fa fa-facebook-square"></i> Facebook
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="btn btn-social btn-dribbble btn-simple">
-                                        <i class="fa fa-dribbble"></i> Dribbble
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="btn btn-social btn-twitter btn-simple">
-                                        <i class="fa fa-twitter"></i> Twitter
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="btn btn-social btn-reddit btn-simple">
-                                        <i class="fa fa-google-plus-square"></i> Google+
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
+     <!-- Footer -->
+  <footer id="aa-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+        <div class="aa-footer-area">
+          <div class="row">
+            <div class="col-md-2 col-sm-6 col-xs-12">
+              <div class="aa-footer-left">
+               <p>&copy; <a rel="nofollow" href="http://internshipspace.com/">InternshipSpace.com</a></p>
+              </div>
             </div>
-            <hr>
-            <div class="copyright">
-                 © <script> document.write(new Date().getFullYear()) </script> Creative Tim, made with love
+            <div class="col-md-5 col-sm-6 col-xs-12">
+              <div class="aa-footer-middle">
+                <a target="_blank" href="https://www.facebook.com/internshipspace"><i class="fa fa-facebook"></i></a>
+                <a target="_blank" href="https://twitter.com/internshipspace"><i class="fa fa-twitter"></i></a>
+                <!-- <a target="_blank" href=""><i class="fa fa-google-plus"></i></a> -->
+                <!-- <a href=""><i class="fa fa-youtube"></i></a> -->
+                <a target="_blank" href="https://www.linkedin.com/company/internshipspace"><i class="fa fa-linkedin"></i></a>
+              </div>
+            </div>
+            <div class="col-md-5 col-sm-12 col-xs-12">
+              <div class="aa-footer-right">
+                <a href="{{ URL::to('/') }}"><small><i class="fa fa-home"></i></small> Home</a>
+                <a href="{{route('companies')}}"><small><i class="fa fa-building-o"></i></small> Companies</a>
+                <a href="{{ route('contact-us') }}"><small><i class="fa fa-phone"></i></small> Contact us</a>
+             
+                <a href="{{ URL::to('') }}">Support</a>
+                <a href="{{ URL::to('') }}">License</a>
+                <a href="{{ URL::to('') }}">FAQ</a>
+                <a href="{{ URL::to('') }}">Privacy & Term</a>
+              
+              </div>
+
+             
+            </div>            
+          </div>
+          <div style="clear: both;"></div>
+            <hr />
+            <div class="center" style="color: white">
+                 © <script> document.write(new Date().getFullYear()) </script> Internship Space,made with inspiration
             </div>
         </div>
-    </footer>
-
+      </div>
+      </div>
+    </div>
+  </footer>
+  <!-- / Footer -->
 </body>
 
 <!--   core js files    -->
@@ -494,6 +440,7 @@
 
 <!--  script for google maps   -->
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+<!-- <script type="text/javascript" src="{{ asset('assets/js/rubick_pres.js') }}"></script> -->
 
 <!--   file where we handle all the script from the Gaia - Bootstrap Template   -->
 <script type="text/javascript" src="{{ asset('assets/js/gaia.js') }}"></script>
